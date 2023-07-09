@@ -1,0 +1,25 @@
+version: '3.7'  # 定义 Docker Compose 文件的版本，此处使用的是版本 3.7
+
+volumes:  # 定义卷部分
+  db_data:  # docker 会使用这个键作为名字，自动创建 db_data 卷来存储数据
+
+x-shared_environment: &shared_environment  # 定义共享环境变量
+  LOG_LEVEL: ${LOG_LEVEL:-debug}  # 设置 LOG_LEVEL 环境变量，默认值为 debug
+  DATABASE_HOST: db  # 设置 DATABASE_HOST 环境变量为 db
+  DATABASE_NAME: vapor_database  # 设置 DATABASE_NAME 环境变量为 vapor_database
+  DATABASE_USERNAME: vapor_username  # 设置 DATABASE_USERNAME 环境变量为 vapor_username
+  DATABASE_PASSWORD: vapor_password  # 设置 DATABASE_PASSWORD 环境变量为 vapor_password
+  
+services:  # 定义服务部分
+
+  db:  # db 服务配置
+    image: postgres:15-alpine  # 使用 PostgreSQL 15 Alpine 版本的镜像
+    volumes:  # 定义挂载卷
+      - db_data:/var/lib/postgresql/data/pgdata  # 将 db_data 卷挂载到容器的 /var/lib/postgresql/data/pgdata 目录
+    environment:  # 定义环境变量
+      PGDATA: /var/lib/postgresql/data/pgdata  # 设置 PGDATA 环境变量为 /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: vapor_username  # 设置 POSTGRES_USER 环境变量为 vapor_username
+      POSTGRES_PASSWORD: vapor_password  # 设置 POSTGRES_PASSWORD 环境变量为 vapor_password
+      POSTGRES_DB: vapor_database  # 设置 POSTGRES_DB 环境变量为 vapor_database
+    ports:  # 定义端口映射，将主机的 5432 端口映射到容器的 5432 端口
+      - '5432:5432'
