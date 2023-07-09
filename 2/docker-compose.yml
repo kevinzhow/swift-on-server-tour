@@ -3,13 +3,6 @@ version: '3.7'  # 定义 Docker Compose 文件的版本，此处使用的是版�
 volumes:  # 定义卷部分
   db_data:  # docker 会使用这个键作为名字，自动创建 db_data 卷来存储数据
 
-x-shared_environment: &shared_environment  # 定义共享环境变量
-  LOG_LEVEL: ${LOG_LEVEL:-debug}  # 设置 LOG_LEVEL 环境变量，默认值为 debug
-  DATABASE_HOST: db  # 设置 DATABASE_HOST 环境变量为 db
-  DATABASE_NAME: vapor_database  # 设置 DATABASE_NAME 环境变量为 vapor_database
-  DATABASE_USERNAME: vapor_username  # 设置 DATABASE_USERNAME 环境变量为 vapor_username
-  DATABASE_PASSWORD: vapor_password  # 设置 DATABASE_PASSWORD 环境变量为 vapor_password
-  
 services:  # 定义服务部分
 
   db:  # db 服务配置
