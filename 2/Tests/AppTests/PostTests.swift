@@ -8,15 +8,18 @@ final class PostTests: XCTestCase {
 
         try await configure(app)
         
-        // Auto revert will empty the database and remove the schema
+        // autoRevert 将自动执行所有 Migration 中 revert 的内容
         try await app.autoRevert()
-        // Auto migrate will recreate database schema
+        // autoMigrate 将自动执行所有 Migration 中 prepare 的内容
+		// 这两步将重建我们的数据库，为我们提供一个干净的测试环境
         try await app.autoMigrate()
 
         let post = Post(content: "Hello, world!")
         
         try await post.save(on: app.db)
 
-        XCTAssertNotNil(try? post.requireID())
+        let postID = try? post.requireID()
+        // 如果 postID 不为 nil 则成功创建，测试通过
+        XCTAssertNotNil(postID)
     }
 }
