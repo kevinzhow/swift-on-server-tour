@@ -6,13 +6,13 @@ volumes:  # 定义卷部分
 services:  # 定义服务部分
 
   db:  # db 服务配置
-    image: postgres:15-alpine  # 使用 PostgreSQL 15 Alpine 版本的镜像
+    image: 'postgres:15-alpine'  # 使用 PostgreSQL 15 Alpine 版本的镜像
     volumes:  # 定义挂载卷
-      - db_data:/var/lib/postgresql/data/pgdata  # 将 db_data 卷挂载到容器的 /var/lib/postgresql/data/pgdata 目录
+      - 'db_data:/var/lib/postgresql/data/pgdata'  # 将 db_data 卷挂载到容器的 /var/lib/postgresql/data/pgdata 目录
     environment:  # 定义环境变量
-      PGDATA: /var/lib/postgresql/data/pgdata  # 设置 PGDATA 环境变量为 /var/lib/postgresql/data/pgdata
-      POSTGRES_USER: vapor_username  # 设置 POSTGRES_USER 环境变量为 vapor_username
-      POSTGRES_PASSWORD: vapor_password  # 设置 POSTGRES_PASSWORD 环境变量为 vapor_password
-      POSTGRES_DB: vapor_database  # 设置 POSTGRES_DB 环境变量为 vapor_database
+      PGDATA: '/var/lib/postgresql/data/pgdata'  # 设置 PGDATA 环境变量为 /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: 'vapor_username'  # 设置 POSTGRES_USER 环境变量为 vapor_username
+      POSTGRES_PASSWORD: 'vapor_password'  # 设置 POSTGRES_PASSWORD 环境变量为 vapor_password
+      POSTGRES_DB: 'vapor_database'  # 设置 POSTGRES_DB 环境变量为 vapor_database
     ports:  # 定义端口映射，将主机的 5432 端口映射到容器的 5432 端口
       - '5432:5432'
