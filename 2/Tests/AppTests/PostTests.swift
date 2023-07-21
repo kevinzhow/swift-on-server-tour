@@ -2,7 +2,7 @@
 import XCTVapor
 
 final class PostTests: XCTestCase {
-    func testCreateUser() async throws {
+    func testCreatePost() async throws {
         let app = Application(.testing)
         defer { app.shutdown() }
 
