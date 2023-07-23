@@ -6,7 +6,7 @@ final class PostTests: XCTestCase {
         let app = Application(.testing)
         defer { app.shutdown() }
 
-        try await configure(app)
+        try configure(app)
         
         // autoRevert 将自动执行所有 Migration 中 revert 的内容
         try await app.autoRevert()

@@ -12,6 +12,6 @@ app.get { req async in
     "It works!"
 }
 
-try await configure(app)
+try configure(app)
 
 try app.run()
