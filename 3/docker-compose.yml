@@ -2,6 +2,7 @@ version: '3.7'  # 定义 Docker Compose 文件的版本，此处使用的是版�
 
 volumes:  # 定义卷部分
   db_data:  # docker 会使用这个键作为名字，自动创建 db_data 卷来存储数据
+  db_data_test:
 
 services:  # 定义服务部分
 
@@ -19,7 +20,7 @@ services:  # 定义服务部分
   db_test: 
     image: 'postgres:15-alpine' 
     volumes: 
-      - 'db_data:/var/lib/postgresql/data/pgdata' 
+      - 'db_data_test:/var/lib/postgresql/data/pgdata' 
     environment:  # 定义环境变量
       PGDATA: '/var/lib/postgresql/data/pgdata'
       POSTGRES_USER: 'vapor_username'
