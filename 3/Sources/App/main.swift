@@ -2,10 +2,7 @@ import Vapor
 import Fluent
 import FluentPostgresDriver
 
-var env = try Environment.detect()
-try LoggingSystem.bootstrap(from: &env)
-
-let app = Application(env)
+let app = Application(.development)
 
 app.http.server.configuration.port = 8080
 
