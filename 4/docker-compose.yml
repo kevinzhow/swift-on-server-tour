@@ -1,0 +1,30 @@
+version: '3.7' 
+
+volumes: 
+  db_data: 
+  db_data_test:
+
+services:
+
+  db: 
+    image: 'postgres:15-alpine' 
+    volumes:
+      - 'db_data:/var/lib/postgresql/data/pgdata' 
+    environment: 
+      PGDATA: '/var/lib/postgresql/data/pgdata'
+      POSTGRES_USER: 'vapor_username'
+      POSTGRES_PASSWORD: 'vapor_password'
+      POSTGRES_DB: 'vapor_database'
+    ports: 
+      - '5432:5432'
+  db_test: 
+    image: 'postgres:15-alpine' 
+    volumes: 
+      - 'db_data_test:/var/lib/postgresql/data/pgdata' 
+    environment: 
+      PGDATA: '/var/lib/postgresql/data/pgdata'
+      POSTGRES_USER: 'vapor_username'
+      POSTGRES_PASSWORD: 'vapor_password'
+      POSTGRES_DB: 'vapor_database'
+    ports:
+      - '5442:5432'
